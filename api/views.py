@@ -8,4 +8,4 @@ from .serializer import Userserializers
 
 @api_view(['GET'])
 def get_user(request):
-    return Response(Userserializers({'name': "Sean", 'age': 21}))
+    return Response(Userserializers({'name': "Sean", 'age': 21}).data)
