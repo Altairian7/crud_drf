@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import User
 
 
-class Userserializers(serializers.ModelSerializer):
+class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'                               #----Transforming all fields from User model
