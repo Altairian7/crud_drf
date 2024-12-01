@@ -15,3 +15,7 @@ def about(request):
 
 def goback(request):
     return HttpResponse('<a href="/"> Go back to home </a>')
+
+def analyse(request):
+    removestuff = request.GET.get('text', 'off')
+    print(removestuff)
