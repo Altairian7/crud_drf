@@ -1,7 +1,9 @@
 # mutations.py
 import graphene
 from models import User, users_db
-from types import UserType
+# from types import UserType
+from graphql_types import UserType
+
 
 class CreateUser(graphene.Mutation):
     class Arguments:

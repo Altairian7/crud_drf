@@ -1,5 +1,6 @@
 # queries.py (update this)
-from types import UserType
+# from types import UserType
+from graphql_types import UserType
 from models import users_db
 
 class Query(graphene.ObjectType):
