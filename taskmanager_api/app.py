@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from ariadne import QueryType, MutationType, make_executable_schema, graphql_sync, load_schema_from_path
 from ariadne.explorer import ExplorerGraphiQL
 
-from models import tasks, create_task
+from models import Task, create_task
 
 query = QueryType()
 mutation = MutationType()
