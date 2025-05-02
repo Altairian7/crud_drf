@@ -49,3 +49,25 @@ def resolve_delete(_, info, id):
     db.session.delete(task)
     db.session.commit()
     return True
+
+
+# Schema
+schema = make_executable_schema(type_defs, [query, mutation, task_obj])
+
+# Routes
+@app.route("/graphql", methods=["GET"])
+def graphql_playground():
+    return PLAYGROUND_HTML, 200
+
+@app.route("/graphql", methods=["POST"])
+def graphql_server():
+    data = request.get_json()
+    success, result = graphql_sync(schema, data, context_value=request)
+    return jsonify(result)
+
+# Create DB
+with app.app_context():
+    db.create_all()
+
+if __name__ == "__main__":
+    app.run(debug=True)
