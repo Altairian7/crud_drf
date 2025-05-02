@@ -25,3 +25,27 @@ def resolve_tasks(_, info):
 @query.field("task")
 def resolve_task(_, info, id):
     return Task.query.get(id)
+
+# Mutation: Create
+@mutation.field("createTask")
+def resolve_create_task(_, info, title, dueDate=None):
+    task = Task(title=title, due_date=dueDate)
+    db.session.add(task)
+    db.session.commit()
+    return task
+
+# Mutation: Toggle Complete
+@mutation.field("toggleDone")
+def resolve_toggle_done(_, info, id):
+    task = Task.query.get(id)
+    task.is_done = not task.is_done
+    db.session.commit()
+    return task
+
+# Mutation: Delete
+@mutation.field("deleteTask")
+def resolve_delete(_, info, id):
+    task = Task.query.get(id)
+    db.session.delete(task)
+    db.session.commit()
+    return True
